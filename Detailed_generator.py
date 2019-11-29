@@ -1,7 +1,7 @@
 def detail_samtools(Regions, Read_depth):
 
 	# create a detailed list with all depth values from the same region in a sub list. From samtools depth calculations
-	# samtools generates a depth file with: chr, position and coverage depth value 
+	# samtools generates a depth file with: chr, position and coverage depth value
 	# Regeions comes from the bed file with chr, start, stop, region name
 
 	detailed =[]
@@ -29,6 +29,3 @@ def detail_samtools(Regions, Read_depth):
 			detailed.append(list_temp)
 
 	return detailed
-
-
-

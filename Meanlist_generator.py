@@ -1,3 +1,4 @@
+import re
 def Meanfunction(mylist, Xcov, start_pos, region_info):
 
 
@@ -5,20 +6,20 @@ def Meanfunction(mylist, Xcov, start_pos, region_info):
 	Coveragesum=0
 	MeanList = []
 	end_pos = 0
-	count = 0 # used to caluculate end position: start + count 
-	
+	count = 0 # used to caluculate end position: start + count
+
 	# If only one coverage element print the one base pair region with chromosom, start, stop, length and mean=coverage value in this case
 	if len(mylist) == 1:
 		MeanList.append(region_info + [int(start_pos), int(start_pos)+1, int(mylist[0]), 1])
 
-	# If the list contains more than one per base coverage values, go through all elements in the list. Save the previous element each time. 
-	# Divide up the regions by comparing the current and the previous elements coverage value. If both over or below keep in same group, if on different sides of the 
-	# threshold coverage value save the previous and add it to the list Mean list whila starting a new region with the current element. Continue until all elements has been placed in a region in the mean list.   
-	else:	
+	# If the list contains more than one per base coverage values, go through all elements in the list. Save the previous element each time.
+	# Divide up the regions by comparing the current and the previous elements coverage value. If both over or below keep in same group, if on different sides of the
+	# threshold coverage value save the previous and add it to the list Mean list whila starting a new region with the current element. Continue until all elements has been placed in a region in the mean list.
+	else:
 		mylist.append(0)
 		for i in range(len(mylist)):
 
-			# Make sure that the first previous element is from the actual list and not the start value of -1 
+			# Make sure that the first previous element is from the actual list and not the start value of -1
 			if int(previous_element) >= 0:
 
 				# Check if the current element coverage value is over threshold
@@ -34,13 +35,13 @@ def Meanfunction(mylist, Xcov, start_pos, region_info):
 							length = end_pos-int(start_pos)
 							m_line = region_info + [int(start_pos), end_pos, round(float(Coveragesum)/float(length), 2), length]
 							MeanList.append(m_line)
-							
+
 					# If the previous element are instead below, save the previous region in the mean list
 					else:
-						Coveragesum += int(previous_element) 
+						Coveragesum += int(previous_element)
 						count+=1
 						end_pos = int(start_pos)+int(count)
-						length = end_pos-int(start_pos) 
+						length = end_pos-int(start_pos)
 						m_line = region_info + [int(start_pos), end_pos, round(float(Coveragesum)/float(length), 2), length]
 						MeanList.append(m_line)
 						start_pos = int(end_pos)
@@ -79,9 +80,3 @@ def Meanfunction(mylist, Xcov, start_pos, region_info):
 		mylist.pop()
 
 	return MeanList
-
-
-
-
-
-

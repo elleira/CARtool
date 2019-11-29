@@ -10,7 +10,7 @@ def stat_table(coverage_list, RegionNames, validation, phred_score, coverage_phr
 	s_table_phred=[]
 	val_list =[]
 
-		# Create the stat table for the coverage list without phred score filtering. 
+		# Create the stat table for the coverage list without phred score filtering.
 		# The table contains the coverage breadth at three given coverage depth threshold values, X_cut_off_list.
 		# If validation is turned on the validation column is added
 
@@ -24,12 +24,12 @@ def stat_table(coverage_list, RegionNames, validation, phred_score, coverage_phr
 				Tresh_3+=1
 
 
-				# compute and enter the coverage depth values in the table together with region name and validation column if turned on 
+				# compute and enter the coverage depth values in the table together with region name and validation column if turned on
 		if validation:
 			if float(Tresh_1)/float(len(line)) < 0.95:
 				s_table.append([dataType,RegionNames[index], round(float(Tresh_1)/float(len(line)),2), round(float(Tresh_2)/float(len(line)),2), round(float(Tresh_3)/float(len(line)),2), '***'])
 				val_list.append([RegionNames[index], int(round(float(Tresh_1)/float(len(line)),2)*100)]+ RegionInfo[index])
-			else: 
+			else:
 				s_table.append([dataType,RegionNames[index], round(float(Tresh_1)/float(len(line)),2), round(float(Tresh_2)/float(len(line)),2), round(float(Tresh_3)/float(len(line)),2)])
 		else:
 			s_table.append([dataType, RegionNames[index], round(float(Tresh_1)/float(len(line)), 2), round(float(Tresh_2)/float(len(line)),2), round(float(Tresh_3)/float(len(line)),2)])
@@ -48,7 +48,7 @@ def stat_table(coverage_list, RegionNames, validation, phred_score, coverage_phr
 		Tresh_2_p = 0
 		Tresh_3_p = 0
 		count=0
-		
+
 		for line in coverage_phred:
 			for element in line:
 				if int(element) >= int(X_Cut_off_list[0]):

@@ -12,9 +12,14 @@ def CombineRegionInfo(listToCompress, regions):
 	regions.append('end.extra')
 	listToCompress.append(['end.extra'])
 
-	
+	import re
 	for line in regions:
-		current_region = line.split('.')
+		current_region = re.split('\.|,|_',line)
+		# current_region = line.split('.')
+		if (current_region[0] == 'iSNP' or current_region[0] == 'iIndel' or current_region[0] == 'MSI'):
+			current_region[0] = "-".join([current_region[0],current_region[1],current_region[2]])
+			current_region[1] = "-".join([current_region[0],current_region[1],current_region[2]])
+			current_region[2] = "-".join([current_region[0],current_region[1],current_region[2]])
 		current_region = current_region[0]
 
 		if not(previous_region ==[]):
@@ -24,7 +29,7 @@ def CombineRegionInfo(listToCompress, regions):
 			else:
 				combine_temp += listToCompress[index]
 				newList.append(combine_temp)
-				combine_temp = []		
+				combine_temp = []
 		index+=1
 		previous_region=current_region
 
@@ -33,6 +38,3 @@ def CombineRegionInfo(listToCompress, regions):
 	listToCompress.pop()
 
 	return newList
-
-
-	

@@ -5,7 +5,7 @@ def Region_generator_plot(det_list_row, Regions, Xcov, index, fig, splice, hotsp
 	matplotlib.use('Agg')
 	import matplotlib.pyplot as plt
 	from matplotlib.collections import PatchCollection
-	import matplotlib.patches as mpatches 
+	import matplotlib.patches as mpatches
 	import tkinter
 	import matplotlib._color_data as mcd
 	import matplotlib.lines as lines
@@ -14,7 +14,7 @@ def Region_generator_plot(det_list_row, Regions, Xcov, index, fig, splice, hotsp
 
 	ax = fig.add_subplot(2,2,index)
 	count=0
-	count_element = 1 
+	count_element = 1
 	count_hotspot = 1
 	patches=[]
 	Sq_under = []
@@ -34,17 +34,17 @@ def Region_generator_plot(det_list_row, Regions, Xcov, index, fig, splice, hotsp
 	line_temp = []
 	arrow=[]
 
-	#Check the values in the list, if bellow threshold add a yellow square to the image else a blue. 
+	#Check the values in the list, if bellow threshold add a yellow square to the image else a blue.
 	for element in det_list_row:
 
-			
+
 		if int(element) < int(Xcov):
-			Sq_under = mpatches.Rectangle([count*10,0], 10, hight, color= 'orange', capstyle = 'butt', joinstyle='miter') 
+			Sq_under = mpatches.Rectangle([count*10,0], 10, hight, color= 'orange', capstyle = 'butt', joinstyle='miter')
 			patches.append(Sq_under)
 
 
 		if int(element) >= int(Xcov):
-			Sq_over = mpatches.Rectangle([count*10,0], 10, hight, color= 'blue', capstyle = 'butt', joinstyle='miter') 
+			Sq_over = mpatches.Rectangle([count*10,0], 10, hight, color= 'blue', capstyle = 'butt', joinstyle='miter')
 			patches.append(Sq_over)
 
 		# If the region figure comes from multiple rows in the bed file, distinguise the new line with a dark line.
@@ -55,7 +55,7 @@ def Region_generator_plot(det_list_row, Regions, Xcov, index, fig, splice, hotsp
 					patches.append(line_temp)
 					splice_element_index+=1
 					splice_site += int(splice[splice_element_index])
-	
+
 		# Add an arrow if there is a hotspot on this location
 
 		if int(count_element-1) in hotspot:
