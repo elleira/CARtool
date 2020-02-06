@@ -254,7 +254,7 @@ info_temp=[]
 mean_index=0
 
 if args.ExonTranscript: # Adds exon number, transcript and chromosome. Extract information from the region name
-	for element in Regions_list:
+	for element in Regions_list:  ##Need an if exon exists.. if transcript.. if chr ..
 		# info_temp = element.split('.')
 		info_temp = re.split('\.|,|_',element)
 		info_temp = [info_temp[2], info_temp[4], info_temp[5]]
@@ -305,7 +305,7 @@ else:
 
 # Generate the short mean subregion list by extracting low regions from the Mean coverage region list
 for line in Mean_full_list:
-	for element in line:
+	for element in line: #Varf;r extra list of lst [[[a,a]],[[b,b]]] On;digt?
 		if int(element[mean_index]) < int(args.X_Cut_off_list[0]): # Check if the subregion has a mean below the coverage depth threshold. Only the "bad" coverage subregions are stored in the short list
 			MeanCov_shortList_temp+=(element)
 			MeanCov_shortList_sublist_temp.append(element)
