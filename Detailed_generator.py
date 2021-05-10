@@ -1,3 +1,4 @@
+
 def detail_samtools(Regions, Read_depth):
 
 	# create a detailed list with all depth values from the same region in a sub list. From samtools depth calculations
